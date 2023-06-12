@@ -29,7 +29,7 @@ pipeline {
                 echo 'deploy'
                 script {
                     if (params.ENV == "dev" || params.ENV == "test" || params.ENV == "prod") {
-                        withCredentials([file(credentialsId: 'iti-samrt-kubeconfig', variable: 'KUBECONFIG_ITI')]) {
+                        withCredentials([file(credentialsId: 'iti-kubeconfig', variable: 'KUBECONFIG_ITI')]) {
                             sh '''
                                 export BUILD_NUMBER=$(cat ../build.txt)
                                 mv Deployment/deploy.yaml Deployment/deploy.yaml.tmp
