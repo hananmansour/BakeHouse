@@ -9,7 +9,7 @@ pipeline {
                 echo 'build'
                 script{
                     if (params.ENV == "release") {
-                        withCredentials([usernamePassword(credentialsId: 'iti-smart-dockerhub', usernameVariable: 'USERNAME_ITI', passwordVariable: 'PASSWORD_ITI')]) {
+                        withCredentials([usernamePassword(credentialsId: 'iti-dockerhub', usernameVariable: 'USERNAME_ITI', passwordVariable: 'PASSWORD_ITI')]) {
                             sh '''
                                 docker login -u ${USERNAME_ITI} -p ${PASSWORD_ITI}
                                 docker build -t kareemelkasaby/bakehouseitismart:v${BUILD_NUMBER} .
