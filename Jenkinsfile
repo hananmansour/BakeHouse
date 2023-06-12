@@ -12,7 +12,7 @@ pipeline {
                         withCredentials([usernamePassword(credentialsId: 'iti-dockerhub', usernameVariable: 'USERNAME_ITI', passwordVariable: 'PASSWORD_ITI')]) {
                             sh '''
                                 sudo chmod 666 /var/run/docker.sock
-                                docker login -u ${USERNAME_ITI} -p ${PASSWORD_ITI}
+                                docker login -u 12345676700 -p ${cat docker-passwd} --password-stdin
                                 docker build -t kareemelkasaby/bakehouseitismart:v${BUILD_NUMBER} .
                                 docker push kareemelkasaby/bakehouseitismart:v${BUILD_NUMBER}
                                 echo ${BUILD_NUMBER} > ../build.txt
