@@ -11,12 +11,12 @@ pipeline {
                     if (params.ENV == "release") {
                         withCredentials([usernamePassword(credentialsId: 'iti-dockerhub', usernameVariable: 'USERNAME_ITI', passwordVariable: 'PASSWORD_ITI')]) {
                             sh '''
-                                sudo chmod 666 /var/run/docker.sock
-                                echo  | docker login -u 12345676700 --password-stdin
-                                docker login -u 12345676700 -p  --password-stdin
-                                docker build -t kareemelkasaby/bakehouseitismart:v${BUILD_NUMBER} .
-                                docker push kareemelkasaby/bakehouseitismart:v${BUILD_NUMBER}
-                                echo ${BUILD_NUMBER} > ../build.txt
+                                 docker login -u ${USERNAME_SYSADMIN} -p ${PASSWORD_SYSADMIN}
+                                docker build -t kareemelkasaby/bakehouseitisysadmin:v${BUILD_NUMBER} .
+                                docker push kareemelkasaby/bakehouseitisysadmin:v${BUILD_NUMBER}
+                                echo ${BUILD_NUMBER} > ../build_num.txt
+                                echo ${ENV_ITI}
+                                
                             '''
                         }
                     }
